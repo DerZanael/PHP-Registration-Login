@@ -9,7 +9,7 @@ require_once ("config.inc.php");
 $error = "";
 $error_class = "warning";
 $regenerated = false;
-$is_posted = $_POST["is_posted"] ?? false;
+$is_posted = ($_SERVER["REQUEST_METHOD"] == "POST");
 $email = $_POST["email"] ?? null;
 if($is_posted !== false) {
   $stmt = $pdo->prepare("SELECT * from `user` WHERE `email` = ?");

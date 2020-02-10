@@ -7,18 +7,17 @@ if($_SESSION["logged"] ?? false) {
 require_once("config.inc.php");
 
 $error = ""; //Error message
-$is_posted = $_POST["is_posted"] ?? false; //Checks if the form has been posted
+$is_posted = ($_SERVER["REQUEST_METHOD"] == "POST"); //Checks if the form has been posted
 //Default values for POST
+$firstname = $_POST["firstname"] ?? null;
+$lastname = $_POST["lastname"] ?? null;
 $email = $_POST["email"] ?? null;
 $password1 = $_POST["password1"] ?? null;
 $password2 = $_POST["password2"] ?? null;
-$firstname = $_POST["firstname"] ?? null;
-$lastname = $_POST["lastname"] ?? null;
 
 if($is_posted) {
   //Get the POST data
   $checks = ["email", "password1", "password2", "firstname", "lastname"];
-  $fill_fields = false;
   foreach($checks as $variable) {
     if(empty($$variable)) {
       $error = "Please fill all required fields";
@@ -120,8 +119,8 @@ require_once ("header.inc.php");
 ?>
 <div class="row">
   <div class="col-12 col-md-6 col-lg-4">
+    <h1>Registration</h1>
     <form class="form" method="POST" id="registration_form">
-      <input type="hidden" name="is_posted" value="true">
       <div class="form-group">
         <label for="firstname" class="col-form-label required">First name:</label>
         <input type="text" name="firstname" id="firstname" value="<?php echo $firstname; ?>" class="form-control" required>

@@ -24,3 +24,18 @@ Two parts in this :
 * The source code I'm basing the tutorial on, in /sources
 
 In the /db folder, you will find a simple SQL script to create your database and an user table to store your users.
+
+## The sources
+* ``index.php`` : the landing page, sending your users to the login, registration or profile page
+* Config and included pages :
+  * ``config.inc.php`` : sets up the database connection and some environment rules
+  * ``header.inc.php`` : first part of the html pages
+  * ``footer.inc.php`` : closes the html
+* Registration related :
+  * ``register.php`` : allows users to register to the website by setting their email and password
+  * ``complete_registration`` : users will confirm their email adress
+  * ``resend_confirmation`` : sends a new token to the users
+* Login related :
+  * ``login.php`` : login to the website
+  * ``logout.php`` : destroy the session and logs out
+* ``profile.php`` : user's profile, available when logged in

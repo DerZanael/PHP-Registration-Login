@@ -8,7 +8,7 @@ if($_SESSION["logged"] ?? false) {
 require_once("config.inc.php");
 $error_class = "danger"; //CSS class for the error message
 $error = ""; //Actual message
-$is_posted = $_POST["is_posted"] ?? false; //Check for the form being posted
+$is_posted = ($_SERVER["REQUEST_METHOD"] == "POST"); //Check for the form being posted
 //Default values for POST variables
 $email = $_POST["email"] ?? null; //Get the email input
 $password = $_POST["password"] ?? null; //Get the password input
