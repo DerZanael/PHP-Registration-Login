@@ -9,11 +9,11 @@ require_once("config.inc.php");
 $error = ""; //Error message
 $is_posted = ($_SERVER["REQUEST_METHOD"] == "POST"); //Checks if the form has been posted
 //Default values for POST
-$firstname = $_POST["firstname"] ?? null;
-$lastname = $_POST["lastname"] ?? null;
-$email = $_POST["email"] ?? null;
-$password1 = $_POST["password1"] ?? null;
-$password2 = $_POST["password2"] ?? null;
+$firstname = $_POST["firstname"] ?? "";
+$lastname = $_POST["lastname"] ?? "";
+$email = $_POST["email"] ?? "";
+$password1 = $_POST["password1"] ?? "";
+$password2 = $_POST["password2"] ?? "";
 
 if($is_posted) {
   //Get the POST data

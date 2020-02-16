@@ -20,7 +20,7 @@ $stmt->execute([
   $email,
 ]);
 $user = $stmt->fetch(PDO::FETCH_OBJ);
-if(empty($user)) {
+if($user === null || $user === false || empty($user)) {
   $error = "No record found in the database for this email";
   $error_class = "danger";
 }

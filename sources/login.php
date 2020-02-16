@@ -10,8 +10,8 @@ $error_class = "danger"; //CSS class for the error message
 $error = ""; //Actual message
 $is_posted = ($_SERVER["REQUEST_METHOD"] == "POST"); //Check for the form being posted
 //Default values for POST variables
-$email = $_POST["email"] ?? null; //Get the email input
-$password = $_POST["password"] ?? null; //Get the password input
+$email = $_POST["email"] ?? ""; //Get the email input
+$password = $_POST["password"] ?? ""; //Get the password input
 
 if($is_posted !== false) { //Yay, it's been posted
   if(empty($email)  || empty($password)) { //Both fields are required but we're still going to check if they are filled
@@ -23,7 +23,7 @@ if($is_posted !== false) { //Yay, it's been posted
     $stmt = $pdo->prepare("SELECT * from `user` WHERE (`email` = ?)");
     $stmt->execute([$email]);
     $user = $stmt->fetch(PDO::FETCH_OBJ);
-    if(empty($user)) {
+    if($user === false || empty($user)) {
       $error = "No record found for this email. <a href='register.php' title='Register to YourSuperWebsite'>Please register</a>";
       $error_class = "info";
     }
@@ -42,12 +42,7 @@ if($is_posted !== false) { //Yay, it's been posted
         }
         else {
           $_SESSION["logged"] = true; //set the "logged" entry so we can check it to see if the user is logged or not
-          /*
-          For this part we're going to log some info about the user, you can alternativerly create a toker you will use to identify your user every time a page is loaded. Something like this :
-          $_SESSION["token"] = "{$user->id}-{$user->email}";
-          and when you need to get the user info you can do a request like this :
-          "SELECT * from user WHERE MD5(CONCAT(id, '-', email)) = ?" with $_SESSION["token"] as a parameter
-          */
+          //For this part we're going to log some info about the user
           $_SESSION["lastname"] = $user->lastname;
           $_SESSION["firstname"] = $user->firstname;
           $_SESSION["userid"] = $user->id;
@@ -64,6 +59,13 @@ if($is_posted !== false) { //Yay, it's been posted
 require_once("header.inc.php");
 ?>
 <?php
+if(($_GET["logout"] ?? "") !== "") {
+  ?>
+<p class="alert alert-succes">You have been successfuly disconnected</p>
+  <?php
+}
+?>
+<?php
 if($is_posted && $error !== "") { //There's been an error during the login process
   ?>
 <p class="alert alert-<?php echo $error_class; ?>"><?php echo nl2br($error); ?></p>
@@ -73,7 +75,6 @@ if($is_posted && $error !== "") { //There's been an error during the login proce
 <div class="row">
   <div class="col-12 col-md-6 col-lg-4">
     <form class="form" method="POST" action="login.php">
-      <input type="hidden" name="is_posted" value="true">
       <div class="form-group">
         <label for="email" class="col-form-label required">Email :</label>
         <input type="email" name="email" id="email" class="form-control" value="<?php echo $email; ?>" required>

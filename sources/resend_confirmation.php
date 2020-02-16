@@ -10,7 +10,7 @@ $error = "";
 $error_class = "warning";
 $regenerated = false;
 $is_posted = ($_SERVER["REQUEST_METHOD"] == "POST");
-$email = $_POST["email"] ?? null;
+$email = $_POST["email"] ?? "";
 if($is_posted !== false) {
   $stmt = $pdo->prepare("SELECT * from `user` WHERE `email` = ?");
   $stmt->execute([
@@ -69,7 +69,6 @@ if(!$regenerated) {
   }
   ?>
 <form class="form form-inline" method="POST">
-  <input type="hidden" name="is_posted" value="true">
   <div class="input-group mr-2">
     <label for="email" class="mr-2">Email:</label>
     <input type="email" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" class="form-control" required>
