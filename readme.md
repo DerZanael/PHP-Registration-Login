@@ -1,10 +1,10 @@
 # A tutorial for PHP registration/login
-This tutorial aims to teach you how to build a complete registration and login system in basic php with build-in sessions.
+This tutorial aims to teach you how to build a complete registration and login system in basic php with built-in sessions.
 
 We well go over the **database creation**, how to interact with it, store and retrieve data to manipulate an user record, how forms work in html and php, and how to store information in the php sessions.
 
 ## Preresquites
-This tutorial will use php7.x (actually 7.4) syntax, and I've been using mysql for my database (more on that later).
+This tutorial will use php7.x (actually 7.4) syntax, and I've been using mariadb for my database (more on that later).
 
 We're not going to use available 3rd-party libraries that you would find with composer and frameworks, but I will give some advices on how to get started on those in a later chapter.
 
@@ -22,6 +22,7 @@ I've seen a lot of php newcomers struggling with that part, who often use outdat
 Two parts in this :
 * The tutorial itself, neatly organized in chapters, in /chapters
 * The source code I'm basing the tutorial on, in /sources
+* A *Going Further* in /going-further section where we'll cover more functionnalities not included in this tutorial.
 
 In the /db folder, you will find a simple SQL script to create your database and an user table to store your users.
 
@@ -39,3 +40,5 @@ In the /db folder, you will find a simple SQL script to create your database and
   * ``login.php`` : login to the website
   * ``logout.php`` : destroy the session and logs out
 * ``profile.php`` : user's profile, available when logged in
+
+All the sources are organised on the same level, but you should *really* organise your website better.
