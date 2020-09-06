@@ -10,4 +10,6 @@ I won't go into detailed explanations, but we will at least overview what can be
 
 You'll find all these information in the ``/going-further`` folder in this repository, have fun ;)
 
+[Going further 1 : Cookies](../going-further/01-cookies.md)
+
 

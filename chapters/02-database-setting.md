@@ -223,3 +223,5 @@ If you want to read more about the *fetch styles*, please refer to the official 
 https://www.php.net/manual/fr/pdostatement.fetch.php
 
 Also you will notice the ` around the tables names, it's not mandatory so you could avoid using them.
+
+[Chapter 3 : Registration](03-registration.md)

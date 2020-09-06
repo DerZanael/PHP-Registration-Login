@@ -50,3 +50,5 @@ if(!($_SESSION["logged"] ?? false)) { //The user is not logged, check the cookie
     }
 }
 ```
+
+[Going further 2 : User roles](02-user-roles.md)
