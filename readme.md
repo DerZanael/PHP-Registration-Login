@@ -19,12 +19,14 @@ I'm a web developer and have been using php (and html, css, js...) for something
 I've seen a lot of php newcomers struggling with that part, who often use outdated guides with outdated code and bad habits, so this tutorial aims to give you something up-to-date code-wise, well as of 2020 and representing my vision of procedural php. But I'll explain why my source code looks like that ;)
 
 ## What's in this tutorial
-Two parts in this :
+Three parts in this :
 * The tutorial itself, neatly organized in chapters, in /chapters
 * The source code I'm basing the tutorial on, in /sources
-* A *Going Further* in /going-further section where we'll cover more functionnalities not included in this tutorial.
+* A *Going Further* section in /going-further where we'll cover more functionnalities not included in this tutorial.
 
 In the /db folder, you will find a simple SQL script to create your database and an user table to store your users.
+
+A ``composer`` branch is also available to reflect the [Going further 3 : Community packages](going-further/03-community-packages.md) section.
 
 ## The sources
 * ``index.php`` : the landing page, sending your users to the login, registration or profile page
