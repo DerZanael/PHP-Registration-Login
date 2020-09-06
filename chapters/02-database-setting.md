@@ -116,7 +116,6 @@ In the file, we will declare a ``$pdo`` variable, calling a ``pdo()`` function, 
 The ``PDO object`` is created like this in our case :
 ```php
 $pdo = new \PDO("<database driver>:host=<database host>;port=<database port>;dbname=<database name>", "<database user>", "<database password>");
-);
 ```
 Why the ``\`` in ``\PDO`` ? It's an habit I got from working with frameworks and namespaces, it tells php to look into the globally available classes and functions for php, instead of the ones locally loaded with the current script. You sometimes have errors coming from not using the ``\``.
 
@@ -169,7 +168,7 @@ catch(\PDOException $e) { //Or die with an error message
 ```
 You'll notice we return the ``$pdo`` object in the ``try`` part, that's because we don't need that if something goes wrong, as we just kill the script in that case.
 
-The ``PDOException`` class is generated when an error happens, and ``PDO::ATTR_ERRMODE`` and ``PDO::ERRMODE_EXCEPTION`` are options for PDO allowing more error messages. The ``::`` is a pointer to contant properties and methods of a *static* class call, where you don't instanciate a *Class* but instead refers to it directly.
+The ``PDOException`` class is generated when an error happens, and ``PDO::ATTR_ERRMODE`` and ``PDO::ERRMODE_EXCEPTION`` are options for PDO allowing more error messages. The ``::`` is a pointer to constant properties and methods of a *static* class call, where you don't instanciate a *Class* but instead refers to it directly.
 
 Try and reload ``index.php`` and check if you have any error. Correct them if needed.
 

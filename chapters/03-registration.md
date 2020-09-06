@@ -23,7 +23,7 @@ $islogged = (isset($_SESSION["logged"])) ? $_SESSION["logged"] : false;
 ```
 ***Attention 5.6 users*** (shame on you, boo) : the ``??`` operator is not available for you, use the above test with the ternary operator instead.
 
-The ``header("Location:index.php");`` sents an header to the browser telling it that the princess is in another file. Basically it's a redirection.
+The ``header("Location:index.php");`` sends an HTTP header to the browser telling it that the princess is in another file. Basically it's a redirection.
 
 The ``exit();`` part stops the script execution so nothing will be sent after the ``header()`` and you won't have a dirty php error, since the redirection does not like to have rendered content after. 
 
@@ -57,7 +57,7 @@ Also we're going to duplicate the password field into two, in order to force the
     <p><button type="submit">Create account</button></p>
 </form>
 ```
-Cool form. The ``required`` attributes will ensure the user can't submit the form without filling the fields, and the ``email`` type will also help for validation. What about the password you ask ? Well, we don't have a client side validation to make sure the passwords match, but fortunately we have your friend Javascript for that.
+Cool form. The ``required`` attributes will ensure the user can't submit the form without filling the fields, and the ``email`` type will also help for validation. What about the password you ask ? Well, we don't have a client side validation to make sure the passwords match, but fortunately we have our friend Javascript for that.
 
 If you're not familiar with javascript, it's a language used to perform a lot of tasks on the client side of things, or interact with the user through their browser. We will be using that to check when the form is submitted that password1 = password2. 
 
@@ -250,7 +250,7 @@ The user is now created in the database, and they have to validate their email a
 
 The ``mail()`` function returns a boolean, so you can test the returned value to see if you email has been sent. We will add a few headers in the email : the sender's address, the mailer identity, and specify we're using an UTF8 charset.
 
-Add this following the ``try...catch`` user insertion in the database (we don't have to worry an email will be sent while the insertion failed since we killed the script with ``die()`` in tha case) :
+Add this following the ``try...catch`` user insertion in the database (we don't have to worry an email will be sent while the insertion failed since we killed the script with ``die()`` in that case) :
 ```php
 //Validation email
 $validate_url = "https://your-super-website.com/complete_registration.php?email={$email}&token={$token}"; //Validation url that users have to click

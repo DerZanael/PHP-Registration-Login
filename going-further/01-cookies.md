@@ -23,7 +23,7 @@ You can add this in the part where you set up the session in **login.php** :
 ```php
 if(($_POST["rememberme"] ?? "") !== "") {
     $str = sha1("{$user->id}-{$user->email}") //for a little more security you can also add a static private key that you will need to define somewhere in your files
-    $duration = 3600 * 24; //One hour in seconds by 24 for a dat, multiply that by the number of days you want your cookie to be alive
+    $duration = 3600 * 24; //One hour in seconds by 24 for a day, multiply that by the number of days you want your cookie to be alive
     setcookie("yourwebsitecookie", $str, $duration, "/"); //the / makes it active for your website
 }
 ```
