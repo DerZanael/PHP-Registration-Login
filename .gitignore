@@ -1,0 +1,4 @@
+sources/vendor
+sources/.env
+sources/composer.lock
+sources/cache

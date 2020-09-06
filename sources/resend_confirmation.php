@@ -10,6 +10,7 @@ $error = "";
 $error_class = "warning";
 $regenerated = false;
 $is_posted = ($_SERVER["REQUEST_METHOD"] == "POST");
+$email_sent = false;
 $email = $_POST["email"] ?? "";
 if($is_posted !== false) {
   $stmt = $pdo->prepare("SELECT * from `user` WHERE `email` = ?");
@@ -49,7 +50,7 @@ if($is_posted !== false) {
         "YourSuperWebsite registration : your new email verification link",
         $email_content,
         [ //Email headers
-          "From" => "no-reply@your-super-website.com",
+          "From" => $_ENV["SMTP_FROM"],
           "X-Mailer" => "PHP/".phpversion(),
           "Content-type" => "text/html; charset=UTF-8",
         ]
@@ -58,41 +59,10 @@ if($is_posted !== false) {
   }
 }
 
-require_once ("header.inc.php");
-?>
-<?php
-if(!$regenerated) {
-  if($error !== "") {
-    ?>
-<p class="alert alert-<?php echo $error_class; ?>"><?php echo $error; ?></p>
-    <?php
-  }
-  ?>
-<form class="form form-inline" method="POST">
-  <div class="input-group mr-2">
-    <label for="email" class="mr-2">Email:</label>
-    <input type="email" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" class="form-control" required>
-  </div>
-  <button type="submit" class="btn btn-primary">Send new code</button>
-  <?php
-}
-else {
-  ?>
-<p class="alert alert-info">
-  <?php if($email_sent) {
-    ?>
-    A new link has been sent to your email adress.
-    <?php
-  }
-  else {
-    ?>
-    Unfortunately, the email could not be sent, please contact the administration team.
-    <?php
-  }
-  ?>
-</p>
-  <?php
-}
- ?>
-<?php
-require_once ("footer.inc.php");
+print $twig->render("resend_confirmation.html.twig", [
+  "email"=>$email,
+  "regenerated"=>$regenerated,
+  "error"=>$error,
+  "error_class"=>$error_class,
+  "email_sent"=>$email_sent,
+]);

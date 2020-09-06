@@ -1,0 +1,30 @@
+{% extends "layout.html.twig" %}
+{% block title %}Login - {{ getenv("APP_NAME") }}{% endblock %}
+
+{% block content %}
+    {% if logout is not null %}
+        <p class="alert alert-succes">You have been successfuly disconnected</p>
+    {% endif %}
+    {% if is_posted and error is not empty %}
+        <p class="alert alert-{{ error_class }}">{{ error|raw|nl2br }}</p>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4">
+            <form class="form" method="POST" action="login.php">
+            <div class="form-group">
+                <label for="email" class="col-form-label required">Email :</label>
+                <input type="email" name="email" id="email" class="form-control" value="{{ email }}" required>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-form-label required">Password :</label>
+                <input type="password" name="password" email="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <p class="small text-muted mt-3">
+                New user ? <a href="register.php" title="Register">Register</a>
+            </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

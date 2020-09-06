@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>PHP registration and login system</title>
+    <title>{{ getenv("APP_NAME") }}</title>
     <meta name="author" value="François Deschamps">
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -24,3 +24,7 @@
   </head>
   <body>
     <div class="container my-4">
+    {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

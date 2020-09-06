@@ -38,22 +38,8 @@ else {
     }
   }
 }
-require_once ("header.inc.php");
-?>
-<?php if($error !== "") {
-  ?>
-<p class="alert alert-<?php echo $error_class; ?>"><?php echo $error; ?></p>
-<p class="small text-muted">Troubles with you account verification ? <a href="resend_confirmation.php" title="Send a new confirmation email page">Try sending a new email verification code</a>.</p>
-  <?php
-}
-else {
-  ?>
-<p class="alert alert-info">Congratulations!
-  <br>Your account is now active, you can log in YourSuperWebsite
-  <br><a href="login.php" title="YourSuperWebsite login page" class="btn btn-info">Login page</a>
-</p>
-  <?php
-}
-?>
-<?php
-require_once ("footer.inc.php");
+
+print $twig->render("complete_registration.html.twig", [
+  "error"=>$error,
+  "error_class"=>$error_class,
+]);

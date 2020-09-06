@@ -1,0 +1,25 @@
+{% extends "layout.html.twig" %}
+{% block title %}Send a new confirmation email - {{ getenv("APP_NAME") }}{% endblock %}
+
+{% block content %}
+    {% if not regenerated %}
+        {% if error is not empty %}
+            <p class="alert alert-{{ error_class }}">{{ error|nl2br }}</p>
+        {% endif %}
+        <form class="form form-inline" method="POST">
+            <div class="input-group mr-2">
+                <label for="email" class="mr-2">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Email" value="{{ email }}" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Send new code</button>
+        </form>
+    {% else %}
+        <p class="alert alert-info">
+            {% if email_sent %}
+            A new link has been sent to your email adress.
+            {% else %}
+            Unfortunately, the email could not be sent, please contact the administration team.
+            {% endif %}
+        </p>
+    {% endif %}
+{% endblock %}

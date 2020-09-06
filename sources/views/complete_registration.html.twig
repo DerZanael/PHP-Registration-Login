@@ -1,0 +1,14 @@
+{% extends "layout.html.twig" %}
+{% block title %}Complete registration - {{ getenv("APP_NAME") }}{% endblock %}
+
+{% block content %}
+    {% if error is not empty %}
+        <p class="alert alert-{{ error_class }}">{{ error }}</p>
+        <p class="small text-muted">Troubles with you account verification ? <a href="resend_confirmation.php" title="Send a new confirmation email page">Try sending a new email verification code</a>.</p>
+    {% else %}
+        <p class="alert alert-info">Congratulations!
+        <br>Your account is now active, you can log in YourSuperWebsite
+        <br><a href="login.php" title="YourSuperWebsite login page" class="btn btn-info">Login page</a>
+        </p>
+    {% endif %}
+{% endblock %}

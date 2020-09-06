@@ -37,7 +37,8 @@ if($is_posted !== false) { //Yay, it's been posted
       else { //Looks good, we'll now check if the user has verified their email
         if(!(bool)$user->verified || !empty($user->token)) { //Nope they didn't.
           $error = "You haven't verified your email yet.
-          Please click the verify account button in the email you received when you registered and try again";
+          Please click the verify account button in the email you received when you registered and try again
+          <a href='resend_confirmation.php' class='btn btn-primary'>Send email again</a>";
           $error_class = "info";
         }
         else {
@@ -56,39 +57,10 @@ if($is_posted !== false) { //Yay, it's been posted
   }
 }
 
-require_once("header.inc.php");
-?>
-<?php
-if(($_GET["logout"] ?? "") !== "") {
-  ?>
-<p class="alert alert-succes">You have been successfuly disconnected</p>
-  <?php
-}
-?>
-<?php
-if($is_posted && $error !== "") { //There's been an error during the login process
-  ?>
-<p class="alert alert-<?php echo $error_class; ?>"><?php echo nl2br($error); ?></p>
-  <?php
-}
-?>
-<div class="row">
-  <div class="col-12 col-md-6 col-lg-4">
-    <form class="form" method="POST" action="login.php">
-      <div class="form-group">
-        <label for="email" class="col-form-label required">Email :</label>
-        <input type="email" name="email" id="email" class="form-control" value="<?php echo $email; ?>" required>
-      </div>
-      <div class="form-group">
-        <label for="password" class="col-form-label required">Password :</label>
-        <input type="password" name="password" email="password" class="form-control" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-      <p class="small text-muted mt-3">
-        New user ? <a href="register.php" title="Register">Register</a>
-      </p>
-    </form>
-  </div>
-</div>
-<?php
-require_once("footer.inc.php");
+print $twig->render("login.html.twig", [
+  "logout"=> $_GET["logout"] ?? null,
+  "is_posted"=>$is_posted,
+  "error"=>$error,
+  "error_class"=>$error_class,
+  "email"=>$email,
+]);

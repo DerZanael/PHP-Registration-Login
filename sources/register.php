@@ -8,6 +8,9 @@ require_once("config.inc.php");
 
 $error = ""; //Error message
 $is_posted = ($_SERVER["REQUEST_METHOD"] == "POST"); //Checks if the form has been posted
+$register_complete = false;
+$email_sent = false;
+
 //Default values for POST
 $firstname = $_POST["firstname"] ?? "";
 $lastname = $_POST["lastname"] ?? "";
@@ -73,7 +76,7 @@ if($is_posted) {
         "YourSuperWebsite registration : please check your email",
         $email_content,
         [ //Email headers
-          "From" => "no-reply@your-super-website.com",
+          "From" => $_ENV["SMTP_FROM"],
           "X-Mailer" => "PHP/".phpversion(),
           "Content-type" => "text/html; charset=UTF-8",
         ]
@@ -88,90 +91,17 @@ if($is_posted) {
   }
 }
 
-require_once ("header.inc.php");
-?>
-<?php if($_SESSION["register_complete"] ?? false) {
-  ?>
-  <p class="alert alert-info">Your registration was successful !
-    <br>
-    <?php
-    if($_SESSION["email_error"] ?? false) {
-      ?>
-       Unfortunately, the confirmation email could not be sent, please contact an administrator, or try sending <a href='resend_confirmation.php' title='Send a new confirmation email'>a new confirmation email</a>.
-      <?php
-    }
-    else {
-      ?>
-      A confirmation message has been sent to your email address, please follow the link enclosed to complete your registration and be able to log in YourSuperWebsite.
-      <?php
-    }
-    ?>
-  <?php
-  unset($_SESSION["register_complete"]);
-  unset($_SESSION["email_error"]);
-}
-?>
-<?php if($is_posted && $error !== "") {
-  ?>
-  <p class="alert alert-warning"><?php echo $error; ?></p>
-  <?php
-}
-?>
-<div class="row">
-  <div class="col-12 col-md-6 col-lg-4">
-    <h1>Registration</h1>
-    <form class="form" method="POST" id="registration_form">
-      <div class="form-group">
-        <label for="firstname" class="col-form-label required">First name:</label>
-        <input type="text" name="firstname" id="firstname" value="<?php echo $firstname; ?>" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="firstname" class="col-form-label required">Last name:</label>
-        <input type="text" name="lastname" id="lastname" value="<?php echo $lastname; ?>" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="email" class="col-form-label required">Email:</label>
-        <input type="email" name="email" id="email" value="<?php echo $email; ?>" class="form-control" required>
-        <p class="form-text small text-muted">Your email will be used to log in</p>
-      </div>
-      <div class="form-group">
-        <label for="password1" class="col-form-label required">Password:</label>
-        <input type="password" name="password1" id="password1" class="form-control" required>
-        <input type="password" name="password2" id="password2" class="form-control mt-2" required>
-        <p id="password_message" class="form-text small text-danger" style="display:none;">The passwords do not match</p>
-      </div>
-      <button type="submit" class="btn btn-primary">Register</button>
-      <p class="mt-3 small text-muted">Already a member ? <a href="login.php" title="Login page">Go to the login page</a></p>
-    </form>
-  </div>
-</div>
-<script language="javascript">
-//Client-side password match
-const pass1 = document.getElementById("password1");
-const pass2 = document.getElementById("password2");
-const pass_msg = document.getElementById("password_message");
-//On page load
-document.addEventListener("DOMContentLoaded", function(){
-  document.getElementById("registration_form").addEventListener("submit", function(evt){ //On form submit
-    pass_msg.style.display = "none";
-    if(!checkPwd()) { //Passwords do not match, we stop the process
-      evt.preventDefault();
-    }
-  });
-  pass1.addEventListener("keyup", function() { checkPwd(); }); //check passwords on type
-  pass2.addEventListener("keyup", function() { checkPwd(); }); //check passwords on type
-});
-/**
- * Check if password1 and password2 match
- * and display the error message
- * @return bool true = ok ;)
- */
-function checkPwd() {
-  let pwd_match = (pass1.value != "" && pass1.value === pass2.value);
-  pass_msg.style.display = (pwd_match) ? "none" : "block";
+$register_complete = $_SESSION["register_complete"] ?? false;
+$email_error = $_SESSION["email_error"] ?? false;
+unset($_SESSION["register_complete"]);
+unset($_SESSION["email_error"]);
 
-  return pwd_match;
-}
-</script>
-<?php
-require_once ("footer.inc.php");
+print $twig->render("register.html.twig", [
+  "firstname"=>$firstname,
+  "lastname"=>$lastname,
+  "email"=>$email,
+  "is_posted"=>$is_posted,
+  "error"=>$error,
+  "register_complete"=>$register_complete,
+  "email_error"=>$email_error,
+]);

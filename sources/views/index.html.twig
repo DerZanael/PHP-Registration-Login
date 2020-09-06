@@ -1,0 +1,15 @@
+{% extends "layout.html.twig" %}
+{% block title %}Index page - {{ getenv("APP_NAME") }}{% endblock %}
+{% block content %}
+    {% if _SESSION["logged"]|default(false) %}
+    <p>
+        Hello you are logged ;)
+        <br><a href="profile.php" title="Your profile">Go to your profile page</a>
+    </p>
+    {% else %}
+    <p>
+        Hello, you are not logged
+        <br><a href="login.php" title="Login page">Login</a> or <a href="register.php" title="Registration page">Register</a>
+    </p>
+    {% endif %}
+{% endblock %}

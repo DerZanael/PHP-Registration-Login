@@ -1,0 +1,9 @@
+{% extends "layout.html.twig" %}
+{% block title %}Your profile - {{ getenv("APP_NAME") }}{% endblock %}
+
+{% block content %}
+    <p class="alert alert-info">
+        Hey {{ _SESSION["firstname"] }} {{ _SESSION["lastname"] }} ! Your email is {{ _SESSION["email"] }} !
+        <br><a href="logout.php" title="Log out">Log out</a>
+    </p>
+{% endblock %}
