@@ -49,3 +49,5 @@ if(($_SESSION["role"] ?? "USER") === "ADMIN) {
 ?>
 ```
 If you want to push that to even another level, you can also manage permissions and allocate them to roles, again with a juction table. That would mean that an user has one or several roles, each of them having one or several permissions, and you can check on those when the user tries to do something, still in the session for example.
+
+[Going further 3 : Community packages](03-community-packages.md)

@@ -74,6 +74,7 @@ if(!$regenerated) {
     <input type="email" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" class="form-control" required>
   </div>
   <button type="submit" class="btn btn-primary">Send new code</button>
+</form>
   <?php
 }
 else {

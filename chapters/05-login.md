@@ -175,3 +175,5 @@ else {
 ```
 
 Aaaaaaannnndddd... we're done. But this was a simple (yet lengthy) tutorial for a really simple way to handle and log your users. As with everything in development, there's always room for improvement (you can actually check that in the sources commits), and we will talk about that in the last chapter.
+
+[Chapter 6 : Going further](06-going-further.md)

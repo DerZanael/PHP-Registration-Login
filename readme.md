@@ -42,3 +42,19 @@ In the /db folder, you will find a simple SQL script to create your database and
 * ``profile.php`` : user's profile, available when logged in
 
 All the sources are organised on the same level, but you should *really* organise your website better.
+
+## Navigation
+Tutorial chapters :
+* [Chapter 1 : Introduction](chapters/01-introduction.md) : What we're doing, some php basics, and the first scripts
+* [Chapter 2 : Database setting](chapters/02-database-setting.md) : Setting up the tutorial's database and the connexion
+* [Chapter 3 : Registration](chapters/03-registration.md) : The registration form and inserting records to the database
+* [Chapter 4 : Email validation](chapters/04-email-validation.md) : Finalizing the user registration
+* [Chapter 5 : Login](chapters/05-login.md) : Log the user
+* [Chapter 6 : Going further](chapters/06-going-further.md) : A quick introduction to new features
+
+Going further :
+* [Chapter 1 : Cookies](going-further/01-cookies.md) : using cookies and regenerating the session
+* [Chapter 2 : User roles](going-further/02-user-roles.md) : A word about user roles to differenciate your users
+* [Chapter 3 : Community packages](going-further/03-community-packages.md) : Using composer, environment parameters and templating
+
+Let's start : [Chapter 1 : Introduction](chapters/01-introduction.md)

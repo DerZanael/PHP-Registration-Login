@@ -326,3 +326,5 @@ if($_SESSION["register_complete"] ?? false) { //Registration successfull, yay
 ```
 
 And that's a wrap for the registration part. Now let's validate that email address.
+
+[Chapter 4 : Email validation](04-email-validation.md)

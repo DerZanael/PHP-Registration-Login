@@ -153,3 +153,5 @@ require_once("footer.inc.php");
 From now on, I'll call the mixed php/html part between the header and footer inclusion "content".
 
 Ok now we're going to make the registration page, but before that we need to set up our database.
+
+[Chapter 2 : Database setting](02-database-setting.md)
