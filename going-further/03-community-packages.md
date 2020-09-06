@@ -1,15 +1,15 @@
 # Going further : Community Packages
-The community for php is extremely active, and there are been a lot of reusable scripts and tutorials published on the web, for whatever need you would ever have.
+The community for php is extremely active, and there have been a lot of reusable scripts and tutorials published on the web, for whatever need you would ever have.
 
-But one problem was *"how do you adapt that script to my particular case"*.
+But one problem was *"how do I adapt that script to my particular case"*.
 
 ## Using the community php packages
 
 Introducing Composer : https://getcomposer.org/ and https://packagist.org/
 
-For a few years now, php has been introducted to a very cool tool called composer, which is a dependency manager for public packages, much like other tools from other languages, like npm for Node.js. A lot of work has been done by the community to create reusable, ready-to-use and compatible packages (think of mods for Skyrim :p) for a buttload of features you can integrate with minimum effort into your own projects. Each package might require other packages, or certain php versions to run, and composer is a tool allowing to fetch packages along with their dependencies.
+For a few years now, php has been introduced to a very cool tool called composer, which is a dependency manager for public packages, much like other tools from other languages, like npm for Node.js. A lot of work has been done by the community to create reusable, ready-to-use and compatible packages (think of mods for Skyrim :p) for a buttload of features you can integrate with minimum effort into your own projects. Each package might require other packages, or certain php versions to run, and composer is a tool allowing to fetch packages along with their dependencies.
 
-For example, let's say you want to generate native excel files (not .csv) from your database in php, but you probably have no idea where to begin. Fortunately for you, there's a package called PHPSpredsheet that does exactly that. You could download it as a standalone library and try to include it in your project. But that package requires several others, and the day you want to update PHPSpreadsheet, you will need to track all other packages and get the appropriate version.
+For example, let's say you want to generate native excel files (not .csv) from your database in php, but you probably have no idea where to begin. Fortunately for you, there's a package called PHPSpreadsheet that does exactly that. You could download it as a standalone library and try to include it in your project, but that package requires several others, and the day you want to update PHPSpreadsheet, you will need to track all other packages and get the appropriate version.
 
 And maybe you have an older php version that the requirements for the current version of the package and can't upgrade your php so, again, you have to track the last compatible version.
 
@@ -18,7 +18,7 @@ Or, you can use composer that would do the work for you.
 ## How it works
 I won't go into much details here, because the official website has a lot of information on that, and there are plenty of other tutorials that will help you a lot more than me, but we will see the global theory behind composer.
 
-First, you will need to be able to run php as a command line program from your favourite OS console. If you use windows, I really recommand using the console provided by Git-scm, called Git Bash. Then you can install composer on your system, or just download the composer.phar file (more on that on the official website) and run it with the ``php composer.phar`` command. If you have *globally* installed composer on your system, you can just use the ``composer`` command.
+First, you will need to be able to run php as a command line program from your favourite OS console. If you use windows, I really recommend using the console provided by Git-scm, called Git Bash. Then you can install composer on your system, or just download the composer.phar file (more on that on the official website) and run it with the ``php composer.phar`` command. If you have *globally* installed composer on your system, you can just use the ``composer`` command.
 
 Then, you need to initialize your project with the ``composer init`` command, which will create a basic ``composer.json`` containing all the information about your project. You can tinker this file to specify your php version for example, and basic project info.
 
@@ -134,14 +134,14 @@ No more dirty critical information in plain sight in our source files! You can s
 
 ***Remember:***
 
-Never commit your ``.env`` file to your project repository, and you should also use ``.htaccess`` directive to deny direct access to the file.
+Never commit your ``.env`` file to your project repository, and you should also use ``.htaccess`` directives to deny direct access to the file.
 
 #### Templating
 What it means to use a templating engine, is that you can split your logic and your design, by getting the whole html part from another script that you will then serve to the user, after passing to it certain information (like a list of users to display etc). 
 
 The advantage of that is that modern template engines come with their own syntax and tools to handle the data you will pass to the template from the logic script. In the end, the template scripts are actually translated into php, but they are way easier to handle, and you can use the caching functions to speed up the process.
 
-There's a lot of templating engines available, two of the most well-known being Twig (used in Symfony) and Blade (used in Laravel). I like Twig better for various reasons, but it's really apples and oranges. Still, I'll use Twig for this example, but the logic works for whatever engin you choose.
+There's a lot of templating engines available, two of the most well-known being Twig (used in Symfony) and Blade (used in Laravel). I like Twig better for various reasons, but it's really apples and oranges. Still, I'll use Twig for this example, but the logic works for whatever engine you choose.
 
 More about Twig : [Twig documentation](https://twig.symfony.com/doc/3.x/)
 
@@ -173,17 +173,17 @@ Blocks can be empty or have content that can be replaced in each view, and are d
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block title%}My default title{% endblock %}</title>
+    <title>{% block title%}My default title{% endblock title %}</title>
     <meta charset="utf-8">
   </head>
   <body>
     <div class="content">
-    {% block content %}{% endblock %}
+    {% block content %}{% endblock content %}
     </div>
   </body>
 </html>
 ```
-Now let's create a view ``index.html.twig`` for the index page : each view can extend a base layout (in our case ``layout.html.twig``), in which case you simply define blocks you'll fill with contents that will replace the blocks of the basic layout. So the view for the index page would look like this :
+Now let's create a view ``index.html.twig`` for the index page : each view can extend a base layout (in our case ``layout.html.twig``), in which case you simply use the already declared blocks by filling them with contents that will replace the block's content of the basic layout. So the view for the index page would look like this :
 
 ```twig
 {# comments look like this #}
@@ -249,4 +249,4 @@ print $twig->render("users.html.twig", [
 {% enfor %}
 ```
 
-By now, you probably have realized that using a templating engine allows you to simplify both the logic of your php script and the design. It requires a little setup, though, but the benefits easily outweight the initial investment. And you're one step closer to the MVC model ;)
+By now, you probably have realized that using a templating engine allows you to simplify both the logic of your php script and the design. It requires a little setup, though, but the benefits easily outweight the initial investment. And you're one step closer to the MVC model and modern frameworks ;)
