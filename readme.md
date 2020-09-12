@@ -60,6 +60,6 @@ Going further :
 * [Chapter 1 : Cookies](going-further/01-cookies.md) : using cookies and regenerating the session
 * [Chapter 2 : User roles](going-further/02-user-roles.md) : A word about user roles to differenciate your users
 * [Chapter 3 : Community packages](going-further/03-community-packages.md) : Using composer, environment parameters and templating
-* [Chapter 4 : ORM](/going-further/04-orm-doctrine) : how to use them and more specifically Doctrine
+* [Chapter 4 : ORM & DBAL](/going-further/04-orm-doctrine.md) : how to use them and more specifically Doctrine
 
 Let's start : [Chapter 1 : Introduction](chapters/01-introduction.md)
